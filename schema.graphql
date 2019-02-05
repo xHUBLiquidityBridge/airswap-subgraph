@@ -1,0 +1,12 @@
+type Trade @entity {
+  id: ID!
+  makerAddress: String!,
+  takerAddress: String!,
+  makerAmount: String!,
+  takerAmount: String!,
+  makerToken: String!,
+  takerToken: String!
+  event: String!
+  expiration: Int!,
+  nonce: Int!
+}

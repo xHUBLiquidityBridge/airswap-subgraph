@@ -1,0 +1,25 @@
+specVersion: 0.0.1
+description: Atomic swaps using the AirSwap Protocol
+repository: https://github.com/airswap/airswap-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: AirSwap
+    network: mainnet
+    source:
+      address: '0x8fd3121013a07c57f0d69646e86e7a4880b467b7'
+      abi: AirSwap
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.1
+      language: wasm/assemblyscript
+      entities:
+        - Trade
+      abis:
+        - name: AirSwap
+          file: ./abis/AirSwap.abi
+      eventHandlers:
+        - event: Filled(address,uint256,address,address,uint256,address,uint256,uint256)
+          handler: handleFilled
+      file: ./src/mapping.ts
